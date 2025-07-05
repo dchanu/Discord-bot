@@ -71,6 +71,23 @@ async def on_message(message):
     await message.channel.send(response)
     await bot.process_commands(message)
 
+# === SLASH COMMAND
+@bot.tree.command(name="resume", description="ดูเรซูเม่")
+async def show_resume(interaction: discord.Interaction):
+
+    embed = discord.Embed(
+        title="👨‍💻 My resume",
+        description="รวมทักษะและประสบการณ์",
+        color=discord.Color.green()
+    )
+
+    embed.add_field(name="🛠️ ทักษะ", value="• Python (Expert)\n• Discord Bot\n• AI/ML\n• Web Dev", inline=False)
+    embed.add_field(name="📌 ประสบการณ์", value="• Freelance Dev\n• ทำ Dashboard / Bot ให้บริษัท\n• ฝึกงานสาย AI", inline=False)
+    embed.set_footer(text="อัปเดตล่าสุด: ก.ค. 2025")
+
+    await interaction.response.send_message(embed=embed, ephemeral=False)
+
+
 # ==== เริ่มรันบอท ====
 keep_alive()
 bot.run(DISCORD_TOKEN)
