@@ -51,3 +51,23 @@ def ask_claude(prompt):
             return f"❌ Error {response.status_code}: {response.text}"
     except Exception as e:
         return f"❌ Connection Error: {str(e)}"
+
+# ==== บอทพร้อมทำงาน ====
+@bot.event
+async def on_ready():
+    print(f"✅ บอท {bot.user} พร้อมทำงานแล้ว!")
+
+# ==== เมื่อมีข้อความส่งมา ====
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+
+    prompt = message.content.strip()
+
+    # ส่งไปถาม API แบบ async เพื่อไม่ให้บล็อก
+    response = await bot.loop.run_in_executor(None, ask_claude, prompt)
+
+    await message.channel.send(response)
+    await bot.process_commands(message)
+
