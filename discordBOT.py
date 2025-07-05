@@ -6,7 +6,6 @@ from threading import Thread
 from dotenv import load_dotenv
 import os
 
-
 # ==== Flask เพื่อป้องกัน Replit หลับ ====
 app = Flask('')
 @app.route('/')
@@ -17,4 +16,8 @@ def run():
 def keep_alive():
     t = Thread(target=run)
     t.start()
-    
+
+# ==== TOKEN ====
+load_dotenv()
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
