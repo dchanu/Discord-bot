@@ -71,3 +71,6 @@ async def on_message(message):
     await message.channel.send(response)
     await bot.process_commands(message)
 
+# ==== เริ่มรันบอท ====
+keep_alive()
+bot.run(DISCORD_TOKEN)
