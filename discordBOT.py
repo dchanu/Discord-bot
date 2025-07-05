@@ -64,6 +64,13 @@ async def on_member_join(member):
     text = f"ยินดีต้อนรับ✨🙌, {member.mention}!"
     await channel.send(text)
 
+   #Bot event member left
+@bot.event
+async def on_member_remove(member):
+    channel = bot.get_channel(1390567025558163569)
+    text = f"{member.mention} ออกจากห้อง!"
+    await channel.send(text)
+
 # ==== เมื่อมีข้อความส่งมา ====
 @bot.event
 async def on_message(message):
